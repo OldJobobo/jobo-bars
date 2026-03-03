@@ -1,0 +1,244 @@
+@import "../omarchy/current/theme/waybar.css";
+
+@define-color background #0c0b10;
+@define-color surface #15141d;
+@define-color overlay #1f1d28;
+@define-color ember #ff7b32;
+@define-color ember-flare #ff4f73;
+@define-color ember-soft #ffc76f;
+@define-color text #f6f1e9;
+@define-color muted #9c8f9d;
+@define-color subtle #4d4453;
+
+* {
+  background: transparent;
+  color: @text;
+  border: none;
+  min-height: 0;
+  font-family: 'Iosevka Nerd Font';
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+}
+
+#waybar > .horizontal {
+  margin: 4px 8px 0 8px;
+  padding: 0;
+}
+
+window#waybar {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background: linear-gradient(140deg, alpha(@overlay, 0.4), alpha(@surface, 0.2));
+  border-radius: 10px;
+  border: 1px solid alpha(@ember-soft, 0.18);
+  padding: 2px 7px;
+  margin: 0 3px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.modules-center {
+  border-color: alpha(@ember-soft, 0.28);
+}
+
+#workspaces {
+  background: transparent;
+  margin: 1px 0px;
+  padding: 1px 0px;
+}
+
+#workspaces button {
+  padding: 3px 6px;
+  margin: 1px 2px;
+  border-radius: 9px;
+  background: linear-gradient(160deg, alpha(@surface, 0.7), alpha(@overlay, 0.5));
+  color: @muted;
+  border: 1px solid alpha(@ember, 0.12);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-in-out;
+}
+
+#workspaces button.active {
+  background: linear-gradient(120deg, alpha(@ember, 0.9), alpha(@ember-soft, 0.8));
+  color: @background;
+  border-color: alpha(@ember-soft, 0.6);
+  text-shadow: 0 0 8px alpha(@ember-soft, 0.55);
+}
+
+#workspaces button:hover {
+  color: @text;
+  border-color: alpha(@ember, 0.6);
+}
+
+#workspaces button.empty {
+  opacity: 0.55;
+}
+
+#tray,
+#window,
+#mpris,
+#cpu,
+#clock,
+#battery,
+#network,
+#memory,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#custom-weather,
+#custom-update,
+#idle_inhibitor,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-updatespacman {
+  min-width: 14px;
+  margin: 4px 4px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, alpha(@surface, 0.7), alpha(@overlay, 0.45));
+  border: 1px solid alpha(@ember, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+}
+
+#custom-expand-icon {
+  margin-right: 10px;
+}
+
+#custom-omarchy {
+  background: linear-gradient(160deg, alpha(@ember, 0.9), alpha(@ember-flare, 0.7));
+  color: @background;
+  border-color: alpha(@ember-soft, 0.55);
+  text-shadow: 0 0 6px alpha(@ember-soft, 0.6);
+}
+
+#custom-update,
+#custom-updatespacman {
+  background: linear-gradient(160deg, alpha(@ember, 0.85), alpha(@ember-soft, 0.75));
+  color: @background;
+  border-color: alpha(@ember-soft, 0.5);
+}
+
+#clock {
+  background: linear-gradient(120deg, alpha(@overlay, 0.85), alpha(@surface, 0.9));
+  border: 1px solid alpha(@ember-soft, 0.35);
+  color: @text;
+  letter-spacing: 0.5px;
+}
+
+#idle_inhibitor {
+  color: @muted;
+}
+
+#idle_inhibitor.activated {
+  background: linear-gradient(150deg, alpha(@ember, 0.85), alpha(@ember-soft, 0.78));
+  color: @background;
+  border-color: alpha(@ember-soft, 0.55);
+}
+
+#idle_inhibitor.deactivated {
+  background: linear-gradient(160deg, alpha(@surface, 0.75), alpha(@overlay, 0.55));
+}
+
+#tray {
+  background: linear-gradient(140deg, alpha(@overlay, 0.75), alpha(@surface, 0.65));
+  color: @text;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+  color: @muted;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  color: @ember-soft;
+}
+
+#network {
+  color: @text;
+  border-color: alpha(@ember, 0.2);
+}
+
+#pulseaudio {
+  background: linear-gradient(135deg, alpha(@ember-flare, 0.9), alpha(@ember, 0.78));
+  color: @background;
+  border-color: alpha(@ember-soft, 0.65);
+}
+
+#backlight {
+  background: linear-gradient(135deg, alpha(@overlay, 0.78), alpha(@surface, 0.86));
+  color: @text;
+}
+
+#battery {
+  background: linear-gradient(135deg, alpha(@overlay, 0.75), alpha(@surface, 0.68));
+  color: @text;
+}
+
+#battery.warning,
+#battery.critical {
+  background: linear-gradient(135deg, alpha(@ember-flare, 0.9), alpha(@ember, 0.8));
+  color: @background;
+  border-color: alpha(@ember-soft, 0.6);
+}
+
+#cpu,
+#memory {
+  background: linear-gradient(150deg, alpha(@surface, 0.8), alpha(@overlay, 0.62));
+}
+
+#mpris {
+  background: linear-gradient(145deg, alpha(@ember-flare, 0.75), alpha(@ember, 0.62));
+  color: @background;
+  animation: none;
+}
+
+#window {
+  background: linear-gradient(155deg, alpha(@overlay, 0.8), alpha(@surface, 0.82));
+  color: @text;
+}
+
+#custom-screenrecording-indicator {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  color: transparent;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: @ember-flare;
+  animation-name: ember-blink;
+  animation-duration: 0.65s;
+}
+
+tooltip {
+  padding: 6px 8px;
+  background: @overlay;
+  border: 1px solid alpha(@ember, 0.35);
+  border-radius: 8px;
+  font-size: 11px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+tooltip label {
+  color: @text;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+@keyframes ember-blink {
+  to {
+    color: @background;
+  }
+}
