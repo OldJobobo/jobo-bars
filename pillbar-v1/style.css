@@ -1,0 +1,256 @@
+@import "../omarchy/current/theme/colors.css";
+
+/* Semantic aliases mapped to Omarchy colors.css keys */
+@define-color pb-base @background;
+@define-color pb-text @foreground;
+@define-color pb-accent @accent;
+@define-color pb-surface alpha(@color0, 0.85);
+@define-color pb-surface-strong alpha(@background, 0.93);
+@define-color pb-dim alpha(@foreground, 0.6);
+@define-color pb-ws-bg alpha(@color7, 0.3);
+@define-color pb-ws-hover alpha(@accent, 0.72);
+@define-color pb-ws-active @accent;
+@define-color pb-ws-active-text @background;
+@define-color pb-module-muted alpha(@color7, 0.8);
+@define-color pb-module-warn @color9;
+@define-color pb-module-ok @color6;
+
+* {
+  background: transparent;
+  color: @pb-text;
+  border: none;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font Propo';
+  font-size: 14px;
+  letter-spacing: 0.75px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+#waybar > box {
+  margin: 4px 4px 2px 4px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.modules-left,
+.modules-right {
+  padding: 0;
+  margin: 0;
+}
+
+.modules-center {
+  border-color: transparent;
+}
+
+#workspaces {
+  background: @pb-surface-strong;
+  margin: 4px 4px 0 4px;
+  padding: 0 4px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+#workspaces button {
+  padding: 4px 10px;
+  margin: 6px 2px;
+  border-radius: 999px;
+  background: @pb-ws-bg;
+  color: @pb-text;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
+  transition: all 0.15s ease-in-out;
+  font-size: 14px;
+}
+
+#workspaces button label {
+  color: @pb-text;
+}
+
+#workspaces button.active {
+  background: @pb-ws-active;
+  color: @pb-ws-active-text;
+}
+
+#workspaces button.active label {
+  color: @pb-ws-active-text;
+}
+
+#workspaces button:hover {
+  background: @pb-ws-hover;
+  color: @pb-ws-active-text;
+}
+
+#workspaces button.empty,
+#workspaces button.empty label {
+  color: @pb-dim;
+}
+
+#tray,
+#mpris,
+#cpu,
+#clock,
+#battery,
+#network,
+#memory,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#custom-weather,
+#custom-update,
+#idle_inhibitor,
+#custom-expand-icon,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-updatespacman {
+  min-width: 20px;
+  margin: 4px 4px 0 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 999px;
+  background: @pb-surface;
+  font-size: 16px;
+  border: none;
+  color: @pb-text;
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.8);
+}
+
+#custom-expand-icon {
+  min-width: 10px;
+  color: @pb-text;
+  font-size: 22px;
+}
+
+#custom-omarchy {
+  padding: 0 12px;
+  color: @pb-accent;
+  text-shadow: none;
+  font-size: 22px;
+}
+
+#custom-update,
+#custom-updatespacman {
+  color: @pb-accent;
+}
+
+#clock {
+  color: @pb-module-ok;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+#idle_inhibitor {
+  color: @pb-module-muted;
+  font-size: 22px;
+}
+
+#idle_inhibitor.activated {
+  color: @pb-accent;
+}
+
+#tray {
+  color: @pb-text;
+  font-size: 22px;
+}
+
+#custom-tray-cap {
+  min-width: 4px;
+  background: @pb-surface;
+  color: @pb-text;
+  font-size: 22px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+  color: @pb-dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  color: @pb-module-warn;
+}
+
+#tray * {
+  color: @pb-text;
+  font-size: 22px;
+}
+
+#network {
+  color: @pb-text;
+  font-size: 22px;
+}
+
+#pulseaudio,
+#cpu {
+  color: @pb-accent;
+  font-size: 22px;
+}
+
+#backlight,
+#battery,
+#bluetooth {
+  color: @pb-module-ok;
+  font-size: 22px;
+}
+
+#battery.warning,
+#battery.critical {
+  color: @pb-module-warn;
+  font-size: 22px;
+}
+
+#memory {
+  color: @pb-module-muted;
+}
+
+#mpris {
+  color: @pb-accent;
+  animation: none;
+  font-size: 14px;
+}
+
+#window,
+#window label,
+#custom-weather {
+  color: @pb-module-ok;
+  font-size: 16px;
+}
+
+#custom-screenrecording-indicator {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  color: alpha(@pb-module-warn, 0.5);
+  font-size: 22px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: @pb-module-warn;
+  animation-name: ember-blink;
+  animation-duration: 0.65s;
+  font-size: 22px;
+}
+
+tooltip {
+  padding: 6px 8px;
+  background: alpha(@pb-surface-strong, 0.98);
+  border: 1px solid alpha(@pb-text, 0.25);
+  border-radius: 8px;
+  font-size: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+tooltip label {
+  color: @pb-text;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+@keyframes ember-blink {
+  to {
+    color: alpha(@pb-base, 0.2);
+  }
+}
