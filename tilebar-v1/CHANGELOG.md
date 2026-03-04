@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+## 0.1.3 - 2026-03-04
+- Added a `custom/compact-toggle` button to switch between normal and compact bar layouts.
+- Added theme-local scripts for compact-mode state management in `scripts/`.
+- Added `compact-state.css` import and compact overrides for spacing/font sizing.
+- Compact mode now minimizes visual density and hides `mpris`, `weather`, `memory`, and `cpu`.
+
 ## 0.1.0
 - Added `VERSION` file.
 - Standardized release version to `0.1.0`; `v1` in the directory name is a variant label, not the package version.
