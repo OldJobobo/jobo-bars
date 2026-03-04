@@ -4,6 +4,7 @@
   "position": "top",
   "mod": "dock",
   "margin-top": 0,
+  "height": 34,
   "margin-left": 5,
   "margin-right": 5,
   "margin-bottom": 0,
@@ -25,8 +26,7 @@
     "network",
     "memory",
     "battery",
-    "cpu",
-    "custom/compact-toggle"
+    "cpu"    
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -56,15 +56,6 @@
     "tooltip-format": "Omarchy update available",
     "signal": 7,
     "interval": 21600
-  },
-  "custom/compact-toggle": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "bash ~/.config/waybar/scripts/compact-toggle.sh",
-    "on-click": "bash ~/.config/waybar/scripts/compact-toggle-switch.sh",
-    "signal": 9,
-    "interval": 3600,
-    "tooltip": true
   },
    "custom/updatespacman": {
     "format": "{}{icon}",
