@@ -19,6 +19,10 @@ Useful commands:
 - `rg -n "<pattern>" <theme-dir>`: search module names, CSS selectors, or commands.
 - `omarchy-restart-waybar`: reload Waybar after edits.
 
+Agent execution rule:
+- Do not run `omarchy-restart-waybar` automatically.
+- Tell the user to run `omarchy-restart-waybar` themselves after edits.
+
 Typical local loop:
 1. Symlink theme to `~/.config/waybar/themes/<theme-name>`.
 2. Select/apply it via your Omarchy workflow.
