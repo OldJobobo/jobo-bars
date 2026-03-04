@@ -1,4 +1,17 @@
-@import "../omarchy/current/theme/waybar.css";
+@import "../omarchy/current/theme/colors.css";
+
+/* Hexbar semantic aliases mapped to Omarchy colors.css */
+@define-color hb-base @background;
+@define-color hb-text @foreground;
+@define-color hb-accent @accent;
+@define-color hb-surface alpha(@color0, 0.9);
+@define-color hb-surface-deep alpha(@color0, 0.8);
+@define-color hb-frame-hi @accent;
+@define-color hb-frame-mid @color8;
+@define-color hb-warn @color9;
+@define-color hb-ok @color10;
+@define-color hb-muted alpha(@foreground, 0.45);
+@define-color hb-shadow alpha(@color0, 0.85);
 
 /* --- Global-Settings ---*/
 
@@ -42,18 +55,18 @@ tooltip {
   border: 0px solid transparent;
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(225deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(315deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(45deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(135deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(225deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(315deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(45deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(135deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(225deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(315deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(45deg, transparent 6px, alpha(@background, 0.8) 0);
+    linear-gradient(135deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(225deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(315deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(45deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(135deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(225deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(315deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(45deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(135deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(225deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(315deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(45deg, transparent 6px, alpha(@hb-base, 0.8) 0);
   background-size: 52% 52%, 52% 52%, 52% 52%, 52% 52%,
     50% 50%, 50% 50%, 50% 50%, 50% 50%,
     54% 54%, 54% 54%, 54% 54%, 54% 54%;
@@ -64,7 +77,7 @@ tooltip {
   background-repeat: no-repeat;
   margin: 0px 2px;
   padding: 0px 6px;
-  color: @foreground;
+  color: @hb-text;
 }
 
 /* Add a bit more space to the right of icons in left group */
@@ -91,18 +104,18 @@ tooltip {
   background-color: transparent;
   min-width: 100px;
   background-image:
-    linear-gradient(135deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(225deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(315deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(45deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(135deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(225deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(315deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(45deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(135deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(225deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(315deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(45deg, transparent 6px, alpha(@background, 0.8) 0);
+    linear-gradient(135deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(225deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(315deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(45deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(135deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(225deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(315deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(45deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(135deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(225deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(315deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(45deg, transparent 6px, alpha(@hb-base, 0.8) 0);
   background-size: 52% 52%, 52% 52%, 52% 52%, 52% 52%,
     50% 50%, 50% 50%, 50% 50%, 50% 50%,
     54% 54%, 54% 54%, 54% 54%, 54% 54%;
@@ -116,25 +129,25 @@ tooltip {
  /* --- Modules ---*/
 
 .modules-center {
-  color: @foreground;
+  color: @hb-text;
   padding: 0px 1px;
   margin: 0px 2px;
   opacity: 0.95;
   border: 0px solid transparent;
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(225deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(315deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(45deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(135deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(225deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(315deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(45deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(135deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(225deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(315deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(45deg, transparent 6px, alpha(@background, 0.8) 0);
+    linear-gradient(135deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(225deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(315deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(45deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(135deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(225deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(315deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(45deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(135deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(225deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(315deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(45deg, transparent 6px, alpha(@hb-base, 0.8) 0);
   background-size: 52% 52%, 52% 52%, 52% 52%, 52% 52%,
     50% 50%, 50% 50%, 50% 50%, 50% 50%,
     54% 54%, 54% 54%, 54% 54%, 54% 54%;
@@ -146,25 +159,25 @@ tooltip {
  }
 
 .modules-right {
-  color: @foreground;
+  color: @hb-text;
   padding: 0px 1px;
   margin: 0px 2px;
   opacity: 0.95;
   border: 0px solid transparent;
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(225deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(315deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(45deg, transparent 5px, alpha(@background, 0.9) 0),
-    linear-gradient(135deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(225deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(315deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(45deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(135deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(225deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(315deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(45deg, transparent 6px, alpha(@background, 0.8) 0);
+    linear-gradient(135deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(225deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(315deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(45deg, transparent 5px, alpha(@hb-base, 0.9) 0),
+    linear-gradient(135deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(225deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(315deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(45deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(135deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(225deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(315deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(45deg, transparent 6px, alpha(@hb-base, 0.8) 0);
   background-size: 52% 52%, 52% 52%, 52% 52%, 52% 52%,
     50% 50%, 50% 50%, 50% 50%, 50% 50%,
     54% 54%, 54% 54%, 54% 54%, 54% 54%;
@@ -181,18 +194,18 @@ tooltip {
   border: 0px solid transparent;
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 5px, alpha(@background, 1) 0),
-    linear-gradient(225deg, transparent 5px, alpha(@background, 1) 0),
-    linear-gradient(315deg, transparent 5px, alpha(@background, 1) 0),
-    linear-gradient(45deg, transparent 5px, alpha(@background, 1) 0),
-    linear-gradient(135deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(225deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(315deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(45deg, transparent 6px, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(135deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(225deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(315deg, transparent 6px, alpha(@background, 0.8) 0),
-    linear-gradient(45deg, transparent 6px, alpha(@background, 0.8) 0);
+    linear-gradient(135deg, transparent 5px, alpha(@hb-base, 1) 0),
+    linear-gradient(225deg, transparent 5px, alpha(@hb-base, 1) 0),
+    linear-gradient(315deg, transparent 5px, alpha(@hb-base, 1) 0),
+    linear-gradient(45deg, transparent 5px, alpha(@hb-base, 1) 0),
+    linear-gradient(135deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(225deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(315deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(45deg, transparent 6px, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(135deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(225deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(315deg, transparent 6px, alpha(@hb-base, 0.8) 0),
+    linear-gradient(45deg, transparent 6px, alpha(@hb-base, 0.8) 0);
   background-size: 52% 52%, 52% 52%, 52% 52%, 52% 52%,
     50% 50%, 50% 50%, 50% 50%, 50% 50%,
     54% 54%, 54% 54%, 54% 54%, 54% 54%;
@@ -215,29 +228,29 @@ tooltip {
   padding-bottom: 2px;
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 4px, alpha(@foreground, 0.5) 0),
-    linear-gradient(225deg, transparent 4px, alpha(@foreground, 0.5) 0),
-    linear-gradient(315deg, transparent 4px, alpha(@foreground, 0.5) 0),
-    linear-gradient(45deg, transparent 4px, alpha(@foreground, 0.5) 0);
+    linear-gradient(135deg, transparent 4px, alpha(@hb-text, 0.5) 0),
+    linear-gradient(225deg, transparent 4px, alpha(@hb-text, 0.5) 0),
+    linear-gradient(315deg, transparent 4px, alpha(@hb-text, 0.5) 0),
+    linear-gradient(45deg, transparent 4px, alpha(@hb-text, 0.5) 0);
   background-size: 50% 50%;
   background-position: top left, top right, bottom right, bottom left;
   background-repeat: no-repeat;
-  color: @background; 
+  color: @hb-base; 
   transition: all 0.3s ease-in-out;
   opacity: 0.95;
 }
 
 #workspaces button.active {
-  color: @background;
+  color: @hb-base;
   background-color: transparent;
   min-width: 2.0em;
   padding-left: 6px;
   padding-right: 6px;
   background-image:
-    linear-gradient(135deg, transparent 4px, alpha(@foreground, 0.9) 0),
-    linear-gradient(225deg, transparent 4px, alpha(@foreground, 0.9) 0),
-    linear-gradient(315deg, transparent 4px, alpha(@foreground, 0.9) 0),
-    linear-gradient(45deg, transparent 4px, alpha(@foreground, 0.9) 0);
+    linear-gradient(135deg, transparent 4px, alpha(@hb-text, 0.9) 0),
+    linear-gradient(225deg, transparent 4px, alpha(@hb-text, 0.9) 0),
+    linear-gradient(315deg, transparent 4px, alpha(@hb-text, 0.9) 0),
+    linear-gradient(45deg, transparent 4px, alpha(@hb-text, 0.9) 0);
   background-size: 51% 51%;
   background-position: top left, top right, bottom right, bottom left;
   background-repeat: no-repeat;
@@ -249,29 +262,29 @@ tooltip {
 #workspaces button.empty {
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 4px, alpha(@foreground, 0.4) 0),
-    linear-gradient(225deg, transparent 4px, alpha(@foreground, 0.4) 0),
-    linear-gradient(315deg, transparent 4px, alpha(@foreground, 0.4) 0),
-    linear-gradient(45deg, transparent 4px, alpha(@foreground, 0.4) 0);
+    linear-gradient(135deg, transparent 4px, alpha(@hb-text, 0.4) 0),
+    linear-gradient(225deg, transparent 4px, alpha(@hb-text, 0.4) 0),
+    linear-gradient(315deg, transparent 4px, alpha(@hb-text, 0.4) 0),
+    linear-gradient(45deg, transparent 4px, alpha(@hb-text, 0.4) 0);
   background-size: 50% 50%;
   background-position: top left, top right, bottom right, bottom left;
   background-repeat: no-repeat;
-  color: @foreground;
+  color: @hb-text;
   opacity: 0.45;
   border-radius: 0px;
   transition: all 0.3s ease-in-out;
 }
 
 #workspaces button:hover {
-  color: @foreground;
+  color: @hb-text;
   border-radius: 0px;
   opacity: 0.9;
   background-color: transparent;
   background-image:
-    linear-gradient(135deg, transparent 4px, alpha(@foreground, 0.7) 0),
-    linear-gradient(225deg, transparent 4px, alpha(@foreground, 0.7) 0),
-    linear-gradient(315deg, transparent 4px, alpha(@foreground, 0.7) 0),
-    linear-gradient(45deg, transparent 4px, alpha(@foreground, 0.7) 0);
+    linear-gradient(135deg, transparent 4px, alpha(@hb-text, 0.7) 0),
+    linear-gradient(225deg, transparent 4px, alpha(@hb-text, 0.7) 0),
+    linear-gradient(315deg, transparent 4px, alpha(@hb-text, 0.7) 0),
+    linear-gradient(45deg, transparent 4px, alpha(@hb-text, 0.7) 0);
   background-size: 50% 50%;
   background-position: top left, top right, bottom right, bottom left;
   background-repeat: no-repeat;
@@ -289,7 +302,7 @@ tooltip {
 #window {
   margin: 2px;
   padding: 1px 0 1px;
-  color: @foreground;
+  color: @hb-text;
   opacity: 0.9;
 }
 
@@ -332,12 +345,12 @@ tooltip {
 #group-tray-expander {
   padding: 0px;
   margin-right: 0px;
-  background-color: alpha(@background, 0.9);
-  color: @foreground;
+  background-color: alpha(@hb-base, 0.9);
+  color: @hb-text;
 }
 
 #tray {
-    background-color: @background;
+    background-color: @hb-base;
     margin: 0 10px;
 }
 
@@ -345,18 +358,18 @@ tooltip {
 }
 
 #tray > .needs-attention {
-    background-color: @transparent;
+    background-color: transparent;
 }
 
 /* Tray drawer items: add pink top/bottom border */
 /* Fallback: style any tray children and the drawer container */
 #group-tray-expander,
 #tray {
-  background-color: alpha(@background, 0.9);
+  background-color: alpha(@hb-base, 0.9);
   border-top: 0px solid transparent;
   border-bottom: 0px solid transparent;
-  background-image: linear-gradient(75deg, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%),
-    linear-gradient(75deg, #aa54f9 0%, #7f7094 30%, #7f7094 60%, #7f7094 100%);
+  background-image: linear-gradient(75deg, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%),
+    linear-gradient(75deg, @hb-frame-hi 0%, @hb-frame-mid 30%, @hb-frame-mid 60%, @hb-frame-mid 100%);
   background-size: 100% 2px, 100% 2px;
   background-position: top left, bottom left;
   background-repeat: no-repeat;
@@ -370,21 +383,21 @@ tooltip {
 
 tooltip {
  padding: 4px;
- background: @background;
+ background: @hb-base;
  font-size: 10px;
- border: 1px solid #aa54f9;
+ border: 1px solid @hb-frame-hi;
  border-radius: 8px;
- box-shadow: 1px 1px 3px 1px #131313;
+ box-shadow: 1px 1px 3px 1px @hb-shadow;
  font-size: 12px;
  
 }
 tooltip label {
-    color: @foreground;
+    color: @hb-text;
     font-weight: normal;
 }
 
 #mpris {
-color: @foreground;
+color: @hb-text;
 padding-top: 2px;
 margin-left: 8px;
 margin-right: 0px;
@@ -413,14 +426,14 @@ animation: repeat;
 }
 
 #custom-screenrecording-indicator.active {
-  color: #eb7087;
+  color: @hb-warn;
   animation-name: blink-recording;
   animation-duration: 0.5s;
 }
 
 @keyframes blink-recording {
     to {
-        color: @background;
+        color: @hb-base;
     }
 }
 
@@ -428,14 +441,14 @@ animation: repeat;
 
 @keyframes blink {
     to {
-        color: #4a4a4a;
+        color: @hb-muted;
         
     }
 }
 
 @keyframes blink-inhibitor {
     to {
-        color: @background;
+        color: @hb-base;
     }
 }
 
@@ -443,11 +456,11 @@ animation: repeat;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  color: @foreground;
+  color: @hb-text;
  }
 
 #idle_inhibitor.activated {
-  color: #178b76;
+  color: @hb-ok;
   animation-name: blink-inhibitor;
   animation-duration: 1s;
 }
