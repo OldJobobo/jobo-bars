@@ -68,7 +68,6 @@
     "interval": 3600
   },
   "backlight": {
-    "device": "intel_backlight",
     "format": "{percent}% {icon}",
     "format-icons": [
       "🌑",

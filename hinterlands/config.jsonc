@@ -86,6 +86,7 @@
     "format": "{}°F",
     "tooltip": true,
     "interval": 3600,
+    "exec-if": "which wttrbar",
     "exec": "wttrbar --location \"Duvall, WA\" --main-indicator=temp_F",
     "return-type": "json"
   },
@@ -111,7 +112,7 @@
         "today": "<span color='#ff4f73'><b>{}</b></span>"
       }
     },
-    "on-click-right": "~/.local/share/omarchy/bin/omarchy-cmd-tzupdate"
+    "on-click-right": "omarchy-cmd-tzupdate"
   },
   "network": {
     "format-icons": [
@@ -196,7 +197,6 @@
     }
   },
   "backlight": {
-    "device": "intel_backlight",
     "format": "{percent}% {icon}",
     "format-icons": [
       "",

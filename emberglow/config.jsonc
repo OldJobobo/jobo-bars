@@ -110,14 +110,14 @@
     "format-alt": "{:%Y-%m-%d  %H:%M:%S}",
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {
-      "mode": "mouth",
+      "mode": "month",
       "format": {
-        "mouth": "<span color='#ffc76f'><b>{}</b></span>",
+        "month": "<span color='#ffc76f'><b>{}</b></span>",
         "weekdays": "<span color='#f6a96b'><b>{}</b></span>",
         "today": "<span color='#ff4f73'><b>{}</b></span>"
       }
     },
-    "on-click-right": "~/.local/share/omarchy/bin/omarchy-cmd-tzupdate"
+    "on-click-right": "omarchy-cmd-tzupdate"
   },
   "network": {
     "format-icons": [
@@ -202,7 +202,6 @@
     }
   },
   "backlight": {
-    "device": "intel_backlight",
     "format": "{percent}% {icon}",
     "format-icons": [
       "",

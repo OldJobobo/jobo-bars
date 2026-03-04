@@ -193,6 +193,7 @@
     "format": "{}°F  ",
     "tooltip": true,
     "interval": 3600,
+    "exec-if": "which wttrbar",
     "exec": "wttrbar --location=98019 --main-indicator=temp_F",
     "return-type": "json"
   }

@@ -101,7 +101,7 @@
       "mode-mon-col": 3,
       "on-click-right": "mode",
       "format": {
-        "mouth": "<span color='#f1fa8c'><b>{}</b></span>",
+        "month": "<span color='#f1fa8c'><b>{}</b></span>",
         "weekdays": "<span color='#bd93f9'><b>{}</b></span>",
         "today": "<span color='#ff79c6'><b>{}</b></span>"
       }
@@ -183,7 +183,6 @@
     "on-click": "omarchy-launch-bluetooth"
   },
   "backlight": {
-    "device": "intel_backlight",
     "format": "{icon}",
     "tooltip-format": "{percent}%",
     "format-icons": [
@@ -198,6 +197,7 @@
         "format": "{}°",
         "tooltip": true,
         "interval": 1800,
+        "exec-if": "which wttrbar",
         "exec": "wttrbar --nerd --fahrenheit --location \"Miami,FL\"",
         "return-type": "json"
   },
