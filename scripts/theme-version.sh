@@ -5,6 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 STATE_BASE="$ROOT_DIR/.versioning"
 HISTORY_DIR="$STATE_BASE/history"
 UNDONE_DIR="$STATE_BASE/undone"
+BACKUP_DIR="$STATE_BASE/changelog-backups"
 DEFAULT_INIT_VERSION="0.1.0"
 
 MODE=""
@@ -66,6 +67,11 @@ validate_semver() {
 version_file() {
   local theme="$1"
   echo "$ROOT_DIR/$theme/VERSION"
+}
+
+changelog_file() {
+  local theme="$1"
+  echo "$ROOT_DIR/$theme/CHANGELOG.md"
 }
 
 discover_themes() {
@@ -177,9 +183,9 @@ confirm_cli() {
 ensure_state_dirs() {
   local probe
   probe=".write-test-$$"
-  if mkdir -p "$HISTORY_DIR" "$UNDONE_DIR" >/dev/null 2>&1 \
-    && touch "$HISTORY_DIR/$probe" "$UNDONE_DIR/$probe" >/dev/null 2>&1; then
-    rm -f "$HISTORY_DIR/$probe" "$UNDONE_DIR/$probe" >/dev/null 2>&1 || true
+  if mkdir -p "$HISTORY_DIR" "$UNDONE_DIR" "$BACKUP_DIR" >/dev/null 2>&1 \
+    && touch "$HISTORY_DIR/$probe" "$UNDONE_DIR/$probe" "$BACKUP_DIR/$probe" >/dev/null 2>&1; then
+    rm -f "$HISTORY_DIR/$probe" "$UNDONE_DIR/$probe" "$BACKUP_DIR/$probe" >/dev/null 2>&1 || true
     return 0
   fi
 
@@ -187,11 +193,105 @@ ensure_state_dirs() {
   STATE_BASE="${TMPDIR:-/tmp}/jobo-bars-versioning-${USER:-user}"
   HISTORY_DIR="$STATE_BASE/history"
   UNDONE_DIR="$STATE_BASE/undone"
-  mkdir -p "$HISTORY_DIR" "$UNDONE_DIR" || err "Unable to create state directory for undo history"
+  BACKUP_DIR="$STATE_BASE/changelog-backups"
+  mkdir -p "$HISTORY_DIR" "$UNDONE_DIR" "$BACKUP_DIR" || err "Unable to create state directory for undo history"
   touch "$HISTORY_DIR/$probe" >/dev/null 2>&1 || err "Fallback history directory is not writable: $HISTORY_DIR"
   touch "$UNDONE_DIR/$probe" >/dev/null 2>&1 || err "Fallback undo directory is not writable: $UNDONE_DIR"
-  rm -f "$HISTORY_DIR/$probe" "$UNDONE_DIR/$probe" >/dev/null 2>&1 || true
+  touch "$BACKUP_DIR/$probe" >/dev/null 2>&1 || err "Fallback changelog backup directory is not writable: $BACKUP_DIR"
+  rm -f "$HISTORY_DIR/$probe" "$UNDONE_DIR/$probe" "$BACKUP_DIR/$probe" >/dev/null 2>&1 || true
   warn "Using fallback state directory: $STATE_BASE"
+}
+
+extract_unreleased_body() {
+  local changelog_path="$1"
+  awk '
+    BEGIN { in_unreleased=0 }
+    /^##[[:space:]]+Unreleased[[:space:]]*$/ { in_unreleased=1; next }
+    /^##[[:space:]]+/ {
+      if (in_unreleased) exit
+    }
+    {
+      if (in_unreleased) print
+    }
+  ' "$changelog_path"
+}
+
+remove_unreleased_section() {
+  local changelog_path="$1"
+  awk '
+    BEGIN { skipping=0 }
+    /^##[[:space:]]+Unreleased[[:space:]]*$/ { skipping=1; next }
+    /^##[[:space:]]+/ {
+      if (skipping) skipping=0
+    }
+    {
+      if (!skipping) print
+    }
+  ' "$changelog_path"
+}
+
+write_released_changelog() {
+  local theme="$1"
+  local new_version="$2"
+  local backup_tx_dir="$3"
+  local changelog_path
+  changelog_path="$(changelog_file "$theme")"
+
+  local backup_marker="__NONE__"
+  local release_date
+  release_date="$(date +%Y-%m-%d)"
+  local release_header
+  release_header="## $new_version - $release_date"
+
+  if [[ -f "$changelog_path" ]]; then
+    if grep -Eq "^##[[:space:]]+$new_version([[:space:]]+-[[:space:]].*)?$" "$changelog_path"; then
+      warn "Skipping CHANGELOG update for $theme: section $new_version already exists"
+      echo "$backup_marker"
+      return 0
+    fi
+
+    local backup_path
+    backup_path="$backup_tx_dir/$theme.before.md"
+    cp "$changelog_path" "$backup_path"
+    backup_marker="$backup_path"
+
+    local unreleased_body remainder stripped_remainder
+    unreleased_body="$(extract_unreleased_body "$changelog_path")"
+    remainder="$(remove_unreleased_section "$changelog_path")"
+
+    if [[ -z "$(printf '%s' "$unreleased_body" | tr -d '[:space:]')" ]]; then
+      unreleased_body="- No documented changes."
+    fi
+
+    stripped_remainder="$(printf '%s\n' "$remainder" \
+      | awk 'NR==1 && /^# Changelog[[:space:]]*$/ { next } { print }' \
+      | sed '/./,$!d')"
+
+    {
+      echo "# Changelog"
+      echo
+      echo "## Unreleased"
+      echo
+      echo "$release_header"
+      printf '%s\n' "$unreleased_body"
+      if [[ -n "$(printf '%s' "$stripped_remainder" | tr -d '[:space:]')" ]]; then
+        echo
+        printf '%s\n' "$stripped_remainder"
+      fi
+    } > "$changelog_path"
+  else
+    backup_marker="__MISSING__"
+    {
+      echo "# Changelog"
+      echo
+      echo "## Unreleased"
+      echo
+      echo "$release_header"
+      echo "- No documented changes."
+    } > "$changelog_path"
+  fi
+
+  echo "$backup_marker"
 }
 
 record_transaction() {
@@ -228,9 +328,10 @@ run_undo() {
     [[ "$in_rows" -eq 1 ]] || continue
     [[ -z "$line" ]] && continue
 
-    local theme old_version _new version_path
-    IFS=$'\t' read -r theme old_version _new <<< "$line"
+    local theme old_version _new changelog_backup version_path changelog_path
+    IFS=$'\t' read -r theme old_version _new changelog_backup <<< "$line"
     version_path="$(version_file "$theme")"
+    changelog_path="$(changelog_file "$theme")"
 
     if [[ "$old_version" == "__MISSING__" ]]; then
       if [[ -f "$version_path" ]]; then
@@ -247,6 +348,26 @@ run_undo() {
       else
         printf '%s\n' "$old_version" > "$version_path"
         echo "Reverted $theme: $old_version"
+      fi
+    fi
+
+    if [[ "${changelog_backup:-__NONE__}" != "__NONE__" ]]; then
+      if [[ "$DRY_RUN" -eq 1 ]]; then
+        if [[ "$changelog_backup" == "__MISSING__" ]]; then
+          echo "[dry-run] remove $theme/CHANGELOG.md"
+        else
+          echo "[dry-run] restore $theme/CHANGELOG.md from backup"
+        fi
+      else
+        if [[ "$changelog_backup" == "__MISSING__" ]]; then
+          rm -f "$changelog_path"
+          echo "Removed $theme/CHANGELOG.md"
+        elif [[ -f "$changelog_backup" ]]; then
+          cp "$changelog_backup" "$changelog_path"
+          echo "Restored $theme/CHANGELOG.md"
+        else
+          warn "Missing changelog backup for $theme: $changelog_backup"
+        fi
       fi
     fi
   done < "$latest"
@@ -367,8 +488,19 @@ apply_changes() {
   local skipped_non_theme=0
   local skipped_invalid=0
   local unchanged=0
+  local transaction_id=""
+  local record_file=""
+  local backup_tx_dir=""
 
-  local theme version_path old_version new_version
+  if [[ "$DRY_RUN" -eq 0 ]]; then
+    ensure_state_dirs
+    transaction_id="$(date +%Y%m%d-%H%M%S)-$$"
+    record_file="$HISTORY_DIR/$transaction_id.tsv"
+    backup_tx_dir="$BACKUP_DIR/$transaction_id"
+    mkdir -p "$backup_tx_dir"
+  fi
+
+  local theme version_path old_version new_version changelog_backup
   for theme in "${themes[@]}"; do
     version_path="$(version_file "$theme")"
 
@@ -419,12 +551,15 @@ apply_changes() {
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
       echo "[dry-run] $theme: ${old_version/__MISSING__/missing} -> $new_version"
+      echo "[dry-run] $theme: update CHANGELOG.md (Unreleased -> $new_version)"
+      changelog_backup="__NONE__"
     else
       printf '%s\n' "$new_version" > "$version_path"
       echo "$theme: ${old_version/__MISSING__/missing} -> $new_version"
+      changelog_backup="$(write_released_changelog "$theme" "$new_version" "$backup_tx_dir")"
     fi
 
-    transaction_rows+=("$theme"$'\t'"$old_version"$'\t'"$new_version")
+    transaction_rows+=("$theme"$'\t'"$old_version"$'\t'"$new_version"$'\t'"${changelog_backup:-__NONE__}")
     changed=$((changed + 1))
   done
 
@@ -434,9 +569,6 @@ apply_changes() {
   fi
 
   if [[ "$DRY_RUN" -eq 0 ]]; then
-    ensure_state_dirs
-    local record_file
-    record_file="$HISTORY_DIR/$(date +%Y%m%d-%H%M%S)-$$.tsv"
     record_transaction "$record_file" "${transaction_rows[@]}"
     echo "Recorded undo transaction: ${record_file#$ROOT_DIR/}"
   fi
