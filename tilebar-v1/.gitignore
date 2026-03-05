@@ -1,3 +1,4 @@
 # Runtime state for compact toggle
 .cache/
+.cache/compact-mode.state
 scripts/compact-state-active.css
