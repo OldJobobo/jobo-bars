@@ -2,6 +2,11 @@
 
 A compact, Omarchy-friendly Waybar theme with a built-in compact toggle mode.
 
+## Requirements
+
+- OldJobobo custom Omarchy templates (only source of `../omarchy/current/theme/colors.css`):
+  https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates
+
 ## Preview
 
 ![tilebar-v1 preview](./preview.png)
@@ -9,7 +14,6 @@ A compact, Omarchy-friendly Waybar theme with a built-in compact toggle mode.
 ## Features
 
 - Dynamic palette support via Omarchy `colors.css`
-    - Requires: https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates
 - Compact toggle module for quick density changes
 - Theme-local compact state scripts in `scripts/`
 
