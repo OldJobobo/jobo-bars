@@ -54,7 +54,8 @@ window#waybar.empty #window {
 #idle_inhibitor,
 #custom-omarchy,
 #custom-screenrecording-indicator,
-#custom-updatespacman {
+#custom-updatespacman,
+#custom-compact-toggle {
   margin: 6px 3px;
   border-radius: 2px;
 }
@@ -83,7 +84,6 @@ window#waybar.empty #window {
 #tray,
 #window,
 #mpris,
-#cpu,
 #clock,
 #battery,
 #network,
@@ -96,8 +96,15 @@ window#waybar.empty #window {
 #idle_inhibitor,
 #custom-omarchy,
 #custom-screenrecording-indicator,
-#custom-updatespacman {
+#custom-updatespacman,
+#custom-compact-toggle {
   min-width: 14px;
+  min-height: 22px;
+  padding: 4px 8px;
+}
+
+#cpu {
+  min-width: 32px;
   min-height: 22px;
   padding: 4px 8px;
 }
@@ -118,6 +125,7 @@ window#waybar.empty #window {
 #idle_inhibitor:hover,
 #custom-screenrecording-indicator:hover,
 #custom-updatespacman:hover,
+#custom-compact-toggle:hover,
 #network:hover,
 #pulseaudio:hover {
   opacity: 0.9;
@@ -139,6 +147,16 @@ window#waybar.empty #window {
 #custom-update,
 #custom-updatespacman {
   background-color: @pine;
+  color: @base;
+}
+
+#custom-compact-toggle {
+  background-color: @surface;
+  color: @text;
+}
+
+#custom-compact-toggle.compact-on {
+  background-color: @gold;
   color: @base;
 }
 
@@ -289,3 +307,5 @@ tooltip label {
     color: @highlight_med;
   }
 }
+
+@import "scripts/compact-state-active.css";
