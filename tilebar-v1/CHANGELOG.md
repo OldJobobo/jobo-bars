@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.6 - 2026-03-05
+- Added `scripts/compact-state-active.css` to `.gitignore` so compact-mode runtime state no longer dirties git status.
+- Added `#custom-voxtype` to compact-mode selector overrides so the voxtype module keeps consistent chip sizing in compact layout.
+
 ## 0.1.5 - 2026-03-05
 - Added `custom/voxtype` support to `config.jsonc` using Omarchy base module behavior.
 - Added `#custom-voxtype` styling so it matches existing tilebar module spacing, hover, and chip visuals.
