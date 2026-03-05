@@ -2,6 +2,14 @@
 
 A personal collection of Waybar themes targeted at Omarchy.
 
+## Required Dependency
+
+These bars require the custom Omarchy templates from:
+
+- https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates
+
+Without that templates repo, theme imports and palette-driven styling will not work correctly.
+
 ## Theme Index
 
 | Theme | Preview | What It Feels Like | Paths |
