@@ -15,7 +15,7 @@
       "custom/update",
       "mpris"
     ],
-  "modules-center": ["custom/weather", "clock", "idle_inhibitor"],
+  "modules-center": ["custom/weather", "clock", "custom/voxtype", "idle_inhibitor"],
   "modules-right": [
     "hyprland/window",
     "tray",
@@ -56,6 +56,19 @@
     "tooltip-format": "Omarchy update available",
     "signal": 7,
     "interval": 21600
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
   },
   "custom/compact-toggle": {
     "format": "{}",

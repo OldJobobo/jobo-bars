@@ -51,6 +51,7 @@ window#waybar.empty #window {
 #pulseaudio,
 #custom-weather,
 #custom-update,
+#custom-voxtype,
 #idle_inhibitor,
 #custom-omarchy,
 #custom-screenrecording-indicator,
@@ -93,6 +94,7 @@ window#waybar.empty #window {
 #pulseaudio,
 #custom-weather,
 #custom-update,
+#custom-voxtype,
 #idle_inhibitor,
 #custom-omarchy,
 #custom-screenrecording-indicator,
@@ -122,6 +124,7 @@ window#waybar.empty #window {
 #custom-omarchy:hover,
 #custom-weather:hover,
 #custom-update:hover,
+#custom-voxtype:hover,
 #idle_inhibitor:hover,
 #custom-screenrecording-indicator:hover,
 #custom-updatespacman:hover,
@@ -147,6 +150,11 @@ window#waybar.empty #window {
 #custom-update,
 #custom-updatespacman {
   background-color: @pine;
+  color: @base;
+}
+
+#custom-voxtype {
+  background-color: @muted;
   color: @base;
 }
 
