@@ -1,0 +1,5 @@
+/* Normal layout overrides. */
+
+window#waybar {
+  min-height: 38px;
+}

@@ -102,7 +102,8 @@ window#waybar {
 #custom-expand-icon,
 #custom-omarchy,
 #custom-screenrecording-indicator,
-#custom-updatespacman {
+#custom-updatespacman,
+#custom-compact-toggle {
   min-width: 20px;
   margin: 4px 4px 0 4px;
   padding-left: 16px;
@@ -130,6 +131,15 @@ window#waybar {
 
 #custom-update,
 #custom-updatespacman {
+  color: @pb-accent;
+}
+
+#custom-compact-toggle {
+  color: @pb-text;
+  font-size: 22px;
+}
+
+#custom-compact-toggle.compact-on {
   color: @pb-accent;
 }
 
@@ -254,3 +264,5 @@ tooltip label {
     color: alpha(@pb-base, 0.2);
   }
 }
+
+@import "scripts/compact-state-active.css";

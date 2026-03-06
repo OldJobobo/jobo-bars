@@ -25,7 +25,8 @@
     "backlight",
     "memory",
     "cpu",
-    "battery"
+    "battery",
+    "custom/compact-toggle"
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -88,6 +89,15 @@
     "exec-if": "which wttrbar",
     "exec": "wttrbar --location \"Duvall, WA\" --main-indicator=temp_F",
     "return-type": "json"
+  },
+  "custom/compact-toggle": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "bash ~/.config/waybar/themes/pillbar-v1/scripts/compact-toggle.sh",
+    "on-click": "bash ~/.config/waybar/themes/pillbar-v1/scripts/compact-toggle-switch.sh",
+    "signal": 9,
+    "interval": 3600,
+    "tooltip": true
   },
   "cpu": {
     "interval": 3,

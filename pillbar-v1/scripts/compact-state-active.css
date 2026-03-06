@@ -1,0 +1,68 @@
+/* Compact layout overrides. */
+
+window#waybar {
+  min-height: 30px;
+}
+
+* {
+  font-size: 12px;
+}
+
+#workspaces {
+  margin: 3px 3px 0 3px;
+  padding: 0 3px;
+}
+
+#workspaces button {
+  padding: 3px 8px;
+  margin: 4px 2px;
+  font-size: 12px;
+}
+
+#tray,
+#mpris,
+#cpu,
+#clock,
+#battery,
+#network,
+#memory,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#custom-weather,
+#custom-update,
+#idle_inhibitor,
+#custom-expand-icon,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-updatespacman,
+#custom-compact-toggle {
+  min-width: 18px;
+  margin: 3px 3px 0 3px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 14px;
+}
+
+#custom-omarchy,
+#tray,
+#network,
+#pulseaudio,
+#cpu,
+#backlight,
+#battery,
+#bluetooth,
+#idle_inhibitor,
+#custom-screenrecording-indicator,
+#custom-expand-icon,
+#custom-compact-toggle {
+  font-size: 18px;
+}
+
+#mpris,
+#custom-weather {
+  opacity: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
