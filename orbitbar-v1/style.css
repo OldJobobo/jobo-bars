@@ -140,7 +140,8 @@ window#waybar {
 #memory,
 #network,
 #battery,
-#custom-siz {
+#temperature,
+#custom-voxtype {
     transition:
         padding 0.18s ease,
         opacity 0.18s ease;
@@ -439,12 +440,20 @@ tooltip {
     color: @tone-primary;
 }
 
+#temperature {
+    color: @tone-highlight;
+}
+
 #bluetooth {
     color: @tone-info;
 }
 
 #pulseaudio {
     color: @tone-success;
+}
+
+#custom-voxtype {
+    color: @tone-recording;
 }
 
 #tray {

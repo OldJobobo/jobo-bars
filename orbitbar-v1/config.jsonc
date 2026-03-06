@@ -150,6 +150,7 @@
     "on-click": "omarchy-launch-or-focus-tui wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
+    "tooltip-format-muted": "Muted",
     "scroll-step": 5,
     "format-muted": "󰖁",
     "headphone": "󰋋",
