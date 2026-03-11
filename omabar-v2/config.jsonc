@@ -6,20 +6,27 @@
   "height": 32, /* defualt 26 */
   "modules-left": [
     "custom/omarchy",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/mpris-status"
   ],
   "modules-center": [
-    "clock",
+    "custom/voxtype",
+    "custom/clock-main",
+    "custom/weather",
     "custom/update",
+    "custom/idle-indicator",
     "custom/screenrecording-indicator"
   ],
   "modules-right": [
-    "custom/weather",
     "group/tray-expander",
+    "custom/theme-name",
     "bluetooth",
     "network",
     "pulseaudio",
+    "disk",
+    "memory",
     "cpu",
+    "custom/temperature-status",
     "battery"
   ],
   "hyprland/workspaces": {
@@ -66,19 +73,54 @@
     "signal": 7,
     "interval": 3600
   },
+  "custom/theme-name": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/theme-status.sh'",
+    "format": "{}",
+    "interval": 3,
+    "max-length": 30,
+    "return-type": "json"
+  },
+  "custom/clock-main": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/clock-status.sh'",
+    "format": "{}",
+    "interval": 30,
+    "return-type": "json",
+    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+  },
+  "custom/mpris-status": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/mpris-status.sh'",
+    "interval": 2,
+    "return-type": "json",
+    "max-length": 36,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next"
+  },
   "cpu": {
     "interval": 5,
     "format": "{usage}% 󰍛",
     "max-length": 10,
     "on-click": "omarchy-launch-or-focus-tui btop"
   },
-  "clock": {
-    /* "format": "🦇 {:L%A %I:%M %p} 🦇" ,
-    "format-alt": "🦇 {:L%d %B %Y} 🦇", */
-    "format": "{:L%A %I:%M %p} ",
-    "format-alt": " {:L%d %B %Y} ",
-    "tooltip": false,
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+  "memory": {
+    "interval": 5,
+    "format": "{}% ",
+    "max-length": 10,
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
+    "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+  "disk": {
+    "interval": 30,
+    "format": "{percentage_used}% 󰋊",
+    "path": "/",
+    "max-length": 10,
+    "tooltip-format": "{used} / {total}",
+    "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+  "custom/temperature-status": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/temperature-status.sh'",
+    "interval": 5,
+    "return-type": "json",
+    "on-click": "omarchy-launch-or-focus-tui btop"
   },
   "network": {
     "format-icons": [
@@ -185,16 +227,37 @@
     "signal": 8,
     "return-type": "json"
   },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
   "tray": {
     "icon-size": 16,
     "spacing": 17
   },
   "custom/weather": {
-    "format": "{}°F  ",
+    "format": "{}",
     "tooltip": true,
-    "interval": 3600,
-    "exec-if": "which wttrbar",
-    "exec": "wttrbar --location=98019 --main-indicator=temp_F",
+    "interval": 900,
+    "signal": 11,
+    "on-click": "xdg-open 'https://forecast.weather.gov/MapClick.php?lat=47.7423&lon=-121.9857'",
+    "on-click-right": "pkill -SIGRTMIN+11 waybar",
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/weather-openmeteo.sh || printf \"%s\\\\n\" \"{\\\"text\\\":\\\"--\\\",\\\"tooltip\\\":\\\"Weather unavailable\\\"}\"'",
     "return-type": "json"
   }
 }
