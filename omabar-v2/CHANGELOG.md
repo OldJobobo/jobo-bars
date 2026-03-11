@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 0.1.1 - 2026-03-11
+
+### Changed
+- Replaced the custom MPRIS polling script with Waybar's native `mpris` module.
+- Updated the bar styling to target Waybar's built-in `#mpris` states directly.
+- Removed the unused `mpris-status.sh` helper script.
+
 ## 0.1.0 - 2026-03-11
 
 ### Added
