@@ -13,9 +13,9 @@ A slim, Omarchy-friendly Waybar theme with centered status modules and theme-loc
 
 ## Features
 
-- Dynamic palette support via Omarchy `colors.css`
+- Dynamic palette support via `colors.css`
 - Centered clock, weather, update, and media status modules
-- Theme-local helper scripts for clock, MPRIS, temperature, theme name, and weather output
+- Theme-local helper scripts for clock, temperature, theme name, and weather output
 
 ## Files
 

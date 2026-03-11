@@ -57,7 +57,7 @@ window#waybar {
 #custom-voxtype,
 #custom-idle-indicator,
 #custom-screenrecording-indicator,
-#custom-mpris-status {
+#mpris {
   background-color: transparent;
 }
 
@@ -100,7 +100,7 @@ window#waybar {
   color: @workspace-hover;
 }
 
-#custom-mpris-status {
+#mpris {
   min-width: 0;
   margin: 0 7.5px;
   padding: 0;
@@ -108,23 +108,23 @@ window#waybar {
   font-size: 12px;
 }
 
-#custom-mpris-status.playing {
+#mpris.playing {
   color: @accent-theme;
 }
 
-#custom-mpris-status.paused {
+#mpris.paused {
   color: @panel-muted;
 }
 
-#custom-mpris-status,
-#custom-mpris-status * {
+#mpris,
+#mpris * {
   text-shadow:
     0 0 1px alpha(@panel-soft, 1),
     0 0 2px alpha(@panel-soft, 1);
 }
 
-#custom-mpris-status.playing,
-#custom-mpris-status.playing * {
+#mpris.playing,
+#mpris.playing * {
   text-shadow:
     0 0 1px alpha(@accent-theme, 1),
     0 0 3px alpha(@accent-theme, 1),
@@ -132,15 +132,15 @@ window#waybar {
   animation: mpris-gradient-pulse 4.2s linear infinite;
 }
 
-#custom-mpris-status.paused,
-#custom-mpris-status.paused * {
+#mpris.paused,
+#mpris.paused * {
   text-shadow:
     0 0 1px alpha(@panel-muted, 1),
     0 0 2px alpha(@panel-muted, 1);
 }
 
-#custom-mpris-status.stopped,
-#custom-mpris-status.empty {
+#mpris.stopped,
+#mpris.empty {
   min-width: 0;
   margin: 0;
   padding: 0;
