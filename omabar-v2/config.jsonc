@@ -78,7 +78,8 @@
     "format": "{}",
     "interval": 3,
     "max-length": 30,
-    "return-type": "json"
+    "return-type": "json",
+    "on-click-right": "bash -lc 'current=\"$(omarchy-theme-current)\"; next=\"$(omarchy-theme-list | grep -Fvx \"$current\" | shuf -n 1)\"; [ -n \"$next\" ] && omarchy-theme-set \"$next\"'"
   },
   "custom/clock-main": {
     "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/clock-status.sh'",

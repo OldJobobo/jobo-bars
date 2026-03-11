@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.1.2 - 2026-03-11
+
+### Changed
+- Added a right-click action on the theme status module to apply a random Omarchy theme different from the current one.
+
 ## 0.1.1 - 2026-03-11
 
 ### Changed
