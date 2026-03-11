@@ -10,6 +10,8 @@
 @define-color accent-time @color6;
 @define-color accent-theme @panel-soft;
 @define-color accent-weather @color9;
+@define-color accent-weather-normal @color4;
+@define-color accent-weather-alert @color9;
 @define-color accent-network @color12;
 @define-color accent-audio @color13;
 @define-color accent-disk @color9;
@@ -217,11 +219,17 @@ tooltip {
 }
 
 #custom-weather {
-  color: @accent-weather;
+  color: @accent-weather-normal;
   font-weight: 600;
   margin-left: 3px;
   margin-right: 8px;
   opacity: 0.9;
+}
+
+#custom-weather.alert,
+#custom-weather.alert * {
+  color: @accent-weather-alert;
+  animation: weather-alert-pulse 1.8s ease-in-out infinite;
 }
 
 #bluetooth,
@@ -333,5 +341,20 @@ tooltip {
       0 0 1px alpha(@accent-theme, 1),
       0 0 3px alpha(@accent-theme, 1),
       0 0 6px alpha(@accent-theme, 1);
+  }
+}
+
+@keyframes weather-alert-pulse {
+  0% {
+    color: @accent-weather-alert;
+    opacity: 1;
+  }
+  50% {
+    color: alpha(@accent-weather-alert, 0.72);
+    opacity: 0.72;
+  }
+  100% {
+    color: @accent-weather-alert;
+    opacity: 1;
   }
 }

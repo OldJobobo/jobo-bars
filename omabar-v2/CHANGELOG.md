@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 0.1.3 - 2026-03-11
+
+### Added
+- Added Weather.gov weather alerts to the forecast module, with red pulsing text when an advisory is active.
+- Added a theme-local `weather-location.conf` file to make the weather location easier to configure.
+
+### Changed
+- Weather location can now be set by place name with cached geocoding, with safe fallback to built-in coordinates if resolution fails.
+- Weather module clicks now reuse the same configured forecast location source as the forecast data.
+
 ## 0.1.2 - 2026-03-11
 
 ### Changed

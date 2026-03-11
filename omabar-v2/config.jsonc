@@ -266,7 +266,7 @@
     "tooltip": true,
     "interval": 900,
     "signal": 11,
-    "on-click": "xdg-open 'https://forecast.weather.gov/MapClick.php?lat=47.7423&lon=-121.9857'",
+    "on-click": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/weather-openmeteo.sh --open'",
     "on-click-right": "pkill -SIGRTMIN+11 waybar",
     "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/weather-openmeteo.sh || printf \"%s\\\\n\" \"{\\\"text\\\":\\\"--\\\",\\\"tooltip\\\":\\\"Weather unavailable\\\"}\"'",
     "return-type": "json"
