@@ -57,6 +57,7 @@ window#waybar {
 #custom-weather,
 #custom-update,
 #custom-voxtype,
+#custom-compact-toggle,
 #custom-idle-indicator,
 #custom-screenrecording-indicator,
 #mpris {
@@ -157,11 +158,13 @@ window#waybar {
 #pulseaudio,
 #custom-weather,
 #custom-theme-name,
+#custom-wallpaper-name,
 #custom-omarchy,
 #custom-idle-indicator,
 #custom-screenrecording-indicator,
 #custom-voxtype,
-#custom-update {
+#custom-update,
+#custom-compact-toggle {
   min-width: 12px;
   margin: 0 7.5px;
 }
@@ -212,10 +215,28 @@ tooltip {
   margin-left: 0;
 }
 
+#custom-wallpaper-name {
+  color: @accent-weather;
+  font-weight: 600;
+  margin-left: 0;
+  margin-right: 6px;
+}
+
 #custom-omarchy {
   background-color: transparent;
   color: @accent-brand;
   font-size: 14px;
+}
+
+#custom-compact-toggle {
+  color: @accent-disk;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 12px;
+}
+
+#custom-compact-toggle.compact-on {
+  color: @accent-disk;
 }
 
 #custom-weather {
@@ -358,3 +379,5 @@ tooltip {
     opacity: 1;
   }
 }
+
+@import "scripts/compact-state-active.css";

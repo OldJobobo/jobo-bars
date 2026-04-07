@@ -20,6 +20,7 @@
   "modules-right": [
     "group/tray-expander",
     "custom/theme-name",
+    "custom/wallpaper-name",
     "bluetooth",
     "network",
     "pulseaudio",
@@ -27,7 +28,8 @@
     "memory",
     "cpu",
     "custom/temperature-status",
-    "battery"
+    "battery",
+    "custom/compact-toggle"
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -80,6 +82,15 @@
     "max-length": 30,
     "return-type": "json",
     "on-click-right": "bash -lc 'current=\"$(omarchy-theme-current)\"; next=\"$(omarchy-theme-list | grep -Fvx \"$current\" | shuf -n 1)\"; [ -n \"$next\" ] && omarchy-theme-set \"$next\"'"
+  },
+  "custom/wallpaper-name": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/wallpaper-status.sh'",
+    "format": "{}",
+    "interval": 5,
+    "max-length": 18,
+    "return-type": "json",
+    "on-click": "omarchy-launch-walker -m menus:omarchyBackgroundSelector --width 800 --minheight 400",
+    "on-click-right": "omarchy-theme-bg-next"
   },
   "custom/clock-main": {
     "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/clock-status.sh'",
@@ -256,6 +267,15 @@
     "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
     "signal": 9,
     "return-type": "json"
+  },
+  "custom/compact-toggle": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "bash ~/.config/waybar/themes/omabar-v2/scripts/compact-toggle.sh",
+    "on-click": "bash ~/.config/waybar/themes/omabar-v2/scripts/compact-toggle-switch.sh",
+    "signal": 12,
+    "interval": 3600,
+    "tooltip": true
   },
   "tray": {
     "icon-size": 16,
