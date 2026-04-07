@@ -1,0 +1,64 @@
+/* Active layout overrides. Defaults to normal until toggled. */
+
+window#waybar {
+  min-height: 32px;
+}
+
+#workspaces button {
+  min-width: 11px;
+  margin: 2px 2px;
+  padding: 0 6px;
+}
+
+#tray,
+#custom-expand-icon,
+#custom-clock-main,
+#mpris,
+#disk,
+#memory,
+#cpu,
+#custom-temperature-status,
+#battery,
+#pulseaudio,
+#custom-weather,
+#custom-theme-name,
+#custom-omarchy,
+#custom-idle-indicator,
+#custom-screenrecording-indicator,
+#custom-voxtype,
+#custom-update,
+#custom-compact-toggle,
+#bluetooth,
+#network {
+  margin: 0 7.5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#custom-update {
+  font-size: 10px;
+  min-width: 10px;
+  margin-left: 8px;
+  margin-right: 2px;
+}
+
+#custom-clock-main {
+  margin-left: 8.75px;
+  margin-right: 5px;
+}
+
+#tray {
+  margin-right: 16px;
+}
+
+#custom-expand-icon {
+  margin-right: 18px;
+}
+
+#custom-omarchy {
+  font-size: 14px;
+}
+
+#custom-compact-toggle {
+  font-size: 13px;
+}
