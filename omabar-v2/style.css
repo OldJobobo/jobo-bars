@@ -14,6 +14,7 @@
 @define-color accent-weather-alert @color9;
 @define-color accent-network @color12;
 @define-color accent-audio @color13;
+@define-color accent-todo @color10;
 @define-color accent-disk @color9;
 @define-color accent-memory @color10;
 @define-color accent-cpu @color14;
@@ -21,6 +22,8 @@
 @define-color accent-power @color6;
 @define-color accent-alert @color11;
 @define-color accent-support @panel-muted;
+@define-color accent-codex @color5;
+@define-color accent-claude @color9;
 
 * {
   color: @foreground;
@@ -28,8 +31,7 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: 'GeistMono Nerd Font Propo';
- }
+  font-family: 'JetBrainsMono Nerd Font Propo'; }
 
 window#waybar {
   background-color: @panel-background;
@@ -37,7 +39,7 @@ window#waybar {
 
 .modules-left {
   background-color: transparent;
-
+  padding: 2px;
   margin-left: 8px;
 }
 
@@ -55,10 +57,11 @@ window#waybar {
  */
 #custom-clock-main,
 #custom-weather,
+#custom-today-todos,
 #custom-update,
 #custom-voxtype,
-#custom-compact-toggle,
 #custom-idle-indicator,
+#custom-compact-toggle,
 #custom-screenrecording-indicator,
 #mpris {
   background-color: transparent;
@@ -157,6 +160,7 @@ window#waybar {
 #battery,
 #pulseaudio,
 #custom-weather,
+#custom-today-todos,
 #custom-theme-name,
 #custom-wallpaper-name,
 #custom-omarchy,
@@ -164,6 +168,8 @@ window#waybar {
 #custom-screenrecording-indicator,
 #custom-voxtype,
 #custom-update,
+#custom-codex-weekly-left,
+#custom-claude-code-status,
 #custom-compact-toggle {
   min-width: 12px;
   margin: 0 7.5px;
@@ -204,9 +210,29 @@ tooltip {
 
 #custom-clock-main {
   margin-left: 8.75px;
-  margin-right: 5px;
+  margin-right: 3px;
   color: @accent-time;
   font-weight: 700;
+}
+
+#custom-today-todos {
+  color: @accent-todo;
+  font-weight: 600;
+  margin-left: 3px;
+  margin-right: 6px;
+  opacity: 0.92;
+}
+
+#custom-today-todos.has-tasks {
+  color: @accent-todo;
+}
+
+#custom-today-todos.fallback {
+  color: @accent-weather;
+}
+
+#custom-today-todos.empty {
+  color: @panel-muted;
 }
 
 #custom-theme-name {
@@ -226,6 +252,50 @@ tooltip {
   background-color: transparent;
   color: @accent-brand;
   font-size: 14px;
+}
+
+#custom-codex-weekly-left {
+  background-image: url("assets/openai-light-themed.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 14px 14px;
+  color: @accent-codex;
+  font-weight: 600;
+  margin-left: 4px;
+  margin-right: 10px;
+  padding-left: 20px;
+}
+
+#custom-codex-weekly-left.fallback {
+  color: @panel-muted;
+}
+
+#custom-claude-code-status {
+  background-image: url("assets/claude-ai-themed.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 14px 14px;
+  color: @accent-claude;
+  font-weight: 600;
+  margin-left: 4px;
+  margin-right: 10px;
+  padding-left: 20px;
+}
+
+#custom-claude-code-status.active {
+  color: @accent-claude;
+}
+
+#custom-claude-code-status.low {
+  color: @accent-weather;
+}
+
+#custom-claude-code-status.over {
+  color: @accent-alert;
+}
+
+#custom-claude-code-status.fallback {
+  color: @panel-muted;
 }
 
 #custom-compact-toggle {
