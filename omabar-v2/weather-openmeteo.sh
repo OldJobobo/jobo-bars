@@ -24,6 +24,10 @@ if [[ -f "${location_config}" ]]; then
   source "${location_config}"
 fi
 
+if [[ "${1:-}" == "--select" ]]; then
+  exec "${script_dir}/weather-location-select.sh"
+fi
+
 should_geocode=0
 if [[ -z "${lat}" || -z "${lon}" || "${lat}" == "auto" || "${lon}" == "auto" ]]; then
   should_geocode=1

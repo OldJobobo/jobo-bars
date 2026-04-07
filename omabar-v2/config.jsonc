@@ -81,6 +81,7 @@
     "interval": 3,
     "max-length": 30,
     "return-type": "json",
+    "on-click": "omarchy-launch-walker -m menus:omarchythemes --width 800 --minheight 400",
     "on-click-right": "bash -lc 'current=\"$(omarchy-theme-current)\"; next=\"$(omarchy-theme-list | grep -Fvx \"$current\" | shuf -n 1)\"; [ -n \"$next\" ] && omarchy-theme-set \"$next\"'"
   },
   "custom/wallpaper-name": {
