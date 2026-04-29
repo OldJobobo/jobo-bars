@@ -7,6 +7,18 @@ A slim, Omarchy-friendly Waybar theme with centered status modules, native MPRIS
 - OldJobobo custom Omarchy templates (source of `../omarchy/current/theme/colors.css`):
   https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates
 
+## Suggested Requirements
+
+- `ccusage`: Improves Claude Code usage reporting from local Claude history.
+
+Install with:
+
+```bash
+npm install -g ccusage
+```
+
+The Claude usage module still hides cleanly if Claude Code or usable local usage data is not present.
+
 ## Preview
 
 ![omabar-v2 preview](./preview.png)
