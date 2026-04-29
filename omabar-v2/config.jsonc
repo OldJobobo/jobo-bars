@@ -7,6 +7,8 @@
   "modules-left": [
     "custom/omarchy",
     "hyprland/workspaces",
+    "custom/codex-weekly-left",
+    "custom/claude-code-status",
     "mpris"
   ],
   "modules-center": [
@@ -144,6 +146,18 @@
     "interval": 5,
     "return-type": "json",
     "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+  "custom/codex-weekly-left": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/codex-weekly-status.sh'",
+    "format": "{}",
+    "interval": 300,
+    "return-type": "json"
+  },
+  "custom/claude-code-status": {
+    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/claude-code-status.sh'",
+    "format": "{}",
+    "interval": 10,
+    "return-type": "json"
   },
   "network": {
     "format-icons": [
