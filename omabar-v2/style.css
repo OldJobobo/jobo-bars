@@ -270,6 +270,13 @@ tooltip {
   color: @panel-muted;
 }
 
+#custom-codex-weekly-left.hidden {
+  background-image: none;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
 #custom-claude-code-status {
   background-image: url("assets/claude-ai-themed.svg");
   background-repeat: no-repeat;
@@ -296,6 +303,13 @@ tooltip {
 
 #custom-claude-code-status.fallback {
   color: @panel-muted;
+}
+
+#custom-claude-code-status.hidden {
+  background-image: none;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
 }
 
 #custom-compact-toggle {

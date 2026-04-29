@@ -3,9 +3,18 @@
 set -euo pipefail
 
 theme_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-theme_colors="/home/oldjobobo/.config/omarchy/current/theme/colors.css"
+theme_colors="${OMARCHY_THEME_COLORS:-${XDG_CONFIG_HOME:-$HOME/.config}/omarchy/current/theme/colors.css}"
 icon_template="$theme_dir/assets/openai-light.svg"
 icon_output="$theme_dir/assets/openai-light-themed.svg"
+
+hide() {
+  printf '%s\n' '{"text":"","tooltip":"","class":"hidden"}'
+  exit 0
+}
+
+command -v codex >/dev/null 2>&1 || hide
+command -v codex-weekly-left >/dev/null 2>&1 || hide
+command -v python3 >/dev/null 2>&1 || hide
 
 if [[ -f "$theme_colors" && -f "$icon_template" ]]; then
   accent="$(awk '/@define-color color5 / {print $3; exit}' "$theme_colors")"
@@ -13,32 +22,36 @@ if [[ -f "$theme_colors" && -f "$icon_template" ]]; then
 
   if [[ -n "${accent:-}" ]]; then
     tmp_icon="$(mktemp)"
-    sed \
-      -e "0,/fill=\"#fff\"/s//fill=\"$accent\"/" \
-      "$icon_template" > "$tmp_icon"
-
-    if [[ ! -f "$icon_output" ]] || ! cmp -s "$tmp_icon" "$icon_output"; then
-      mv "$tmp_icon" "$icon_output"
+    if sed -e "0,/fill=\"#fff\"/s//fill=\"$accent\"/" "$icon_template" >"$tmp_icon"; then
+      if [[ ! -f "$icon_output" ]] || ! cmp -s "$tmp_icon" "$icon_output"; then
+        mv "$tmp_icon" "$icon_output" 2>/dev/null || rm -f "$tmp_icon"
+      else
+        rm -f "$tmp_icon"
+      fi
     else
       rm -f "$tmp_icon"
     fi
   fi
 fi
 
-if ! output="$(codex-weekly-left 2>/dev/null)"; then
-  printf '%s\n' '{"text":"--% left","tooltip":"codex-weekly-left failed","class":"fallback"}'
-  exit 0
-fi
+output="$(codex-weekly-left 2>/dev/null)" || hide
 
 left="$(printf '%s\n' "$output" | awk -F': ' '/^Weekly limit left:/ {print $2; exit}')"
-
-if [[ -z "${left:-}" ]]; then
-  printf '%s\n' '{"text":"--% left","tooltip":"Weekly limit data unavailable","class":"fallback"}'
-  exit 0
-fi
+[[ -n "${left:-}" ]] || hide
 
 left="${left%%%}"
 left="${left%%.0}"
-tooltip="$(printf '%s\n' "$output" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')"
+[[ "$left" =~ ^[0-9]+([.][0-9]+)?$ ]] || hide
 
-printf '{"text":"%s%% left","tooltip":%s,"class":"normal"}\n' "$left" "$tooltip"
+python3 - "$left" "$output" <<'PYEOF'
+import json
+import sys
+
+left = sys.argv[1]
+tooltip = sys.argv[2].strip()
+print(json.dumps({
+    "text": f"{left}% left",
+    "tooltip": tooltip,
+    "class": "normal",
+}, separators=(",", ":")))
+PYEOF
