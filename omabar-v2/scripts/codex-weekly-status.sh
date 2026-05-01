@@ -13,8 +13,9 @@ hide() {
 }
 
 command -v codex >/dev/null 2>&1 || hide
-command -v codex-weekly-left >/dev/null 2>&1 || hide
 command -v python3 >/dev/null 2>&1 || hide
+weekly_left_bin="$theme_dir/codex-weekly-left"
+[[ -x "$weekly_left_bin" ]] || hide
 
 if [[ -f "$theme_colors" && -f "$icon_template" ]]; then
   accent="$(awk '/@define-color color5 / {print $3; exit}' "$theme_colors")"
@@ -34,7 +35,7 @@ if [[ -f "$theme_colors" && -f "$icon_template" ]]; then
   fi
 fi
 
-output="$(codex-weekly-left 2>/dev/null)" || hide
+output="$("$weekly_left_bin" 2>/dev/null)" || hide
 
 left="$(printf '%s\n' "$output" | awk -F': ' '/^Weekly limit left:/ {print $2; exit}')"
 [[ -n "${left:-}" ]] || hide

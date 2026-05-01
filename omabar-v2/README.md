@@ -44,7 +44,7 @@ The uninstaller reads the install manifest and offers to restore the backup befo
 - Weather powered by Open-Meteo with Weather.gov alert awareness — switches to a pulsing red state when an active advisory is in effect
 - Compact layout toggle that persists across restarts
 - Claude Code session usage meter with `ccusage` integration
-- Codex weekly usage meter
+- Codex weekly usage meter (bundled `codex-weekly-left` reads session data from `~/.codex/sessions`)
 - Right-click the theme name to load a random Omarchy theme
 
 ## Weather Setup
@@ -81,6 +81,7 @@ tz="America/Los_Angeles"
 └── scripts/
     ├── claude-code-status.sh
     ├── clock-status.sh
+    ├── codex-weekly-left
     ├── codex-weekly-status.sh
     ├── compact-toggle.sh
     ├── compact-toggle-switch.sh

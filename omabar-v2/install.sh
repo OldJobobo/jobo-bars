@@ -20,6 +20,7 @@ FILES=(
   style.css
   scripts/claude-code-status.sh
   scripts/clock-status.sh
+  scripts/codex-weekly-left
   scripts/codex-weekly-status.sh
   scripts/compact-state-active.css
   scripts/compact-state-compact.css
