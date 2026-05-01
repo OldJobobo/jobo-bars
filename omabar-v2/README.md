@@ -54,7 +54,7 @@ Reads the install manifest, shows what will be removed, and offers to restore th
 
 ## Features
 
-- Dynamic palette support via Omarchy's `colors.css`
+- Dynamic palette support via `colors.css` from [oldjobobo-custom-omarchy-templates](https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates)
 - Centered clock, weather, update, idle, screen-recording, and media status modules
 - Native Waybar `mpris` module with custom playing/paused styling
 - Weather powered by Open-Meteo with Weather.gov alert awareness — switches to a pulsing red state when an active advisory is in effect
