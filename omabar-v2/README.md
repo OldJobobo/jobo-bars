@@ -2,62 +2,92 @@
 
 A slim, Omarchy-friendly Waybar theme with centered status modules, native MPRIS, and configurable weather with alert awareness.
 
-## Requirements
-
-- OldJobobo custom Omarchy templates (source of `../omarchy/current/theme/colors.css`):
-  https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates
-
-## Suggested Requirements
-
-- `ccusage`: Improves Claude Code usage reporting from local Claude history.
-
-Install with:
-
-```bash
-npm install -g ccusage
-```
-
-The Claude usage module still hides cleanly if Claude Code or usable local usage data is not present.
-
 ## Preview
 
 ![omabar-v2 preview](./preview.png)
 
+## Install
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh)
+```
+
+The installer will show you exactly what it will install and which existing files it will back up, then prompt before touching anything. It also walks you through weather location setup.
+
+To uninstall:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/uninstall.sh)
+```
+
+The uninstaller reads the install manifest and offers to restore the backup before removing files.
+
+## Requirements
+
+- [OldJobobo custom Omarchy templates](https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates) — provides `omarchy/current/theme/colors.css` used for dynamic palette support
+
+## Suggested
+
+- `ccusage` — improves Claude Code usage reporting by reading live session blocks
+
+  ```bash
+  npm install -g ccusage
+  ```
+
+  The Claude usage module hides cleanly if Claude Code or usage data are not present.
+
 ## Features
 
-- Dynamic palette support via `colors.css`
-- Centered clock, weather, update, and media status modules
-- Native Waybar `mpris` module with the theme's custom playing/paused styling
-- Weather powered by Open-Meteo, with Weather.gov alert checks for active advisories
-- Theme-local `weather-location.conf` so location can be set without editing the script itself
-- Right-click on the theme name to load a random Omarchy theme
+- Dynamic palette support via Omarchy's `colors.css`
+- Centered clock, weather, update, idle, screen-recording, and media status modules
+- Native Waybar `mpris` module with custom playing/paused styling
+- Weather powered by Open-Meteo with Weather.gov alert awareness — switches to a pulsing red state when an active advisory is in effect
+- Compact layout toggle that persists across restarts
+- Claude Code session usage meter with `ccusage` integration
+- Codex weekly usage meter
+- Right-click the theme name to load a random Omarchy theme
 
 ## Weather Setup
 
-Edit `weather-location.conf` to set the forecast location.
-
-The easiest option is:
+During install you will be prompted to enter a city name and timezone. To reconfigure later, either edit `~/.config/waybar/scripts/weather-location.conf` directly or run the interactive selector (requires `gum`, `jq`, and `fzf`):
 
 ```bash
-location_query="Seattle, WA"
+~/.config/waybar/scripts/weather-location-select.sh
 ```
 
-You can also pin exact coordinates if you want to be precise:
+`weather-location.conf` supports three ways to set your location:
 
 ```bash
+# Resolved by the Open-Meteo geocoder at first run, then cached
+location_query="Seattle, WA"
+
+# Pin exact coordinates to skip geocoding entirely
 lat="47.6062"
 lon="-122.3321"
+
+# Override the timezone (leave blank to use the system timezone)
+tz="America/Los_Angeles"
 ```
-
-If `lat` and `lon` are blank, the script will resolve `location_query` and cache the coordinates for later refreshes.
-
-When Weather.gov reports an active alert for the configured point, the weather module switches to a red pulsing alert state and includes the alert details in the tooltip.
 
 ## Files
 
-- `config.jsonc`: Waybar module layout and behavior
-- `style.css`: Theme styling
-- `weather-location.conf`: Theme-local weather location config
-- `*.sh`: Theme-local helper scripts used by custom modules
-- `VERSION`: Theme version
-- `CHANGELOG.md`: Release notes
+```
+~/.config/waybar/
+├── config.jsonc            # Waybar module layout and exec paths
+├── style.css               # Theme styling
+├── assets/
+│   ├── claude-ai.svg       # Claude icon template (recolored to match theme)
+│   └── openai-light.svg    # Codex icon template (recolored to match theme)
+└── scripts/
+    ├── claude-code-status.sh
+    ├── clock-status.sh
+    ├── codex-weekly-status.sh
+    ├── compact-toggle.sh
+    ├── compact-toggle-switch.sh
+    ├── temperature-status.sh
+    ├── theme-status.sh
+    ├── wallpaper-status.sh
+    ├── weather-location.conf
+    ├── weather-location-select.sh
+    └── weather-openmeteo.sh
+```
