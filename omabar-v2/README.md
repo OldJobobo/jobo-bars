@@ -14,6 +14,18 @@ bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/o
 
 The installer will show you exactly what it will install and which existing files it will back up, then prompt before touching anything. It also walks you through weather location setup.
 
+To update an existing install (preserves `config.jsonc`, `style.css`, and `weather-location.conf`):
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh) --update
+```
+
+Add `--force` to also overwrite those preserved files:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh) --update --force
+```
+
 To uninstall:
 
 ```bash
