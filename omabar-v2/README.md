@@ -62,6 +62,7 @@ Reads the install manifest, shows what will be removed, and offers to restore th
 - Claude Code session usage meter with `ccusage` integration
 - Codex weekly usage meter (bundled `codex-weekly-left` reads session data from `~/.codex/sessions`)
 - Right-click the theme name to load a random Omarchy theme
+- Right-click the wallpaper name to load a random wallpaper
 
 ## Weather Setup
 
