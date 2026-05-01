@@ -12,27 +12,31 @@ A slim, Omarchy-friendly Waybar theme with centered status modules, native MPRIS
 bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh)
 ```
 
-The installer will show you exactly what it will install and which existing files it will back up, then prompt before touching anything. It also walks you through weather location setup.
+Shows exactly what will be installed and which existing files will be backed up, then prompts before touching anything. Walks through weather location setup on first run.
 
-To update an existing install (preserves `config.jsonc`, `style.css`, and `weather-location.conf`):
+## Update
+
+Pulls the latest scripts and assets while leaving your `config.jsonc`, `style.css`, and `weather-location.conf` untouched:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh) --update
 ```
 
-Add `--force` to also overwrite those preserved files:
+To also overwrite those preserved files (useful when there are breaking config changes):
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh) --update --force
 ```
 
-To uninstall:
+Either way, anything being replaced is backed up first.
+
+## Uninstall
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/uninstall.sh)
 ```
 
-The uninstaller reads the install manifest and offers to restore the backup before removing files.
+Reads the install manifest, shows what will be removed, and offers to restore the backup before deleting anything.
 
 ## Requirements
 
