@@ -4,8 +4,8 @@ set -euo pipefail
 
 theme_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 theme_colors="${OMARCHY_THEME_COLORS:-${XDG_CONFIG_HOME:-$HOME/.config}/omarchy/current/theme/colors.css}"
-icon_template="$theme_dir/assets/openai-light.svg"
-icon_output="$theme_dir/assets/openai-light-themed.svg"
+icon_template="$theme_dir/../assets/openai-light.svg"
+icon_output="$theme_dir/../assets/openai-light-themed.svg"
 
 hide() {
   printf '%s\n' '{"text":"","tooltip":"","class":"hidden"}'

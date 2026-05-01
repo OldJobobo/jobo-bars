@@ -1,4 +1,4 @@
-/* Active layout overrides. Defaults to normal until toggled. */
+/* Normal layout overrides. */
 
 window#waybar {
   min-height: 32px;

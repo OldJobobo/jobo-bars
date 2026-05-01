@@ -12,8 +12,8 @@ FMT_SESSION="{session_left}% 󰅕 {session_reset}"
 
 theme_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 theme_colors="${OMARCHY_THEME_COLORS:-${XDG_CONFIG_HOME:-$HOME/.config}/omarchy/current/theme/colors.css}"
-icon_template="$theme_dir/assets/claude-ai.svg"
-icon_output="$theme_dir/assets/claude-ai-themed.svg"
+icon_template="$theme_dir/../assets/claude-ai.svg"
+icon_output="$theme_dir/../assets/claude-ai-themed.svg"
 
 SESSION_LIMIT="${CLAUDE_CODE_SESSION_LIMIT:-978515}"
 CLAUDE_HOME="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
@@ -30,7 +30,7 @@ command -v claude >/dev/null 2>&1 || hide
 [[ -d "$CLAUDE_HOME" ]] || hide
 
 if [[ -f "$theme_colors" && -f "$icon_template" ]]; then
-  style_file="$theme_dir/style.css"
+  style_file="$theme_dir/../style.css"
   claude_color="$(awk '/@define-color accent-claude / {print $3; exit}' "$style_file" 2>/dev/null)"
   claude_color="${claude_color%;}"
   accent="$(awk -v color_name="${claude_color#@}" '/@define-color / && $2 == color_name {print $3; exit}' "$theme_colors")"

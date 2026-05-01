@@ -78,7 +78,7 @@
     "interval": 3600
   },
   "custom/theme-name": {
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/theme-status.sh'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/theme-status.sh'",
     "format": "{}",
     "interval": 3,
     "max-length": 30,
@@ -87,7 +87,7 @@
     "on-click-right": "bash -lc 'current=\"$(omarchy-theme-current)\"; next=\"$(omarchy-theme-list | grep -Fvx \"$current\" | shuf -n 1)\"; [ -n \"$next\" ] && omarchy-theme-set \"$next\"'"
   },
   "custom/wallpaper-name": {
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/wallpaper-status.sh'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/wallpaper-status.sh'",
     "format": "{}",
     "interval": 5,
     "max-length": 18,
@@ -96,7 +96,7 @@
     "on-click-right": "omarchy-theme-bg-next"
   },
   "custom/clock-main": {
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/clock-status.sh'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/clock-status.sh'",
     "format": "{}",
     "interval": 30,
     "return-type": "json",
@@ -142,19 +142,19 @@
     "on-click": "omarchy-launch-or-focus-tui btop"
   },
   "custom/temperature-status": {
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/temperature-status.sh'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/temperature-status.sh'",
     "interval": 5,
     "return-type": "json",
     "on-click": "omarchy-launch-or-focus-tui btop"
   },
   "custom/codex-weekly-left": {
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/codex-weekly-status.sh'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/codex-weekly-status.sh'",
     "format": "{}",
     "interval": 300,
     "return-type": "json"
   },
   "custom/claude-code-status": {
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/claude-code-status.sh'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/claude-code-status.sh'",
     "format": "{}",
     "interval": 10,
     "return-type": "json"
@@ -286,8 +286,8 @@
   "custom/compact-toggle": {
     "format": "{}",
     "return-type": "json",
-    "exec": "bash ~/.config/waybar/themes/omabar-v2/scripts/compact-toggle.sh",
-    "on-click": "bash ~/.config/waybar/themes/omabar-v2/scripts/compact-toggle-switch.sh",
+    "exec": "bash ~/.config/waybar/scripts/compact-toggle.sh",
+    "on-click": "bash ~/.config/waybar/scripts/compact-toggle-switch.sh",
     "signal": 12,
     "interval": 3600,
     "tooltip": true
@@ -301,9 +301,9 @@
     "tooltip": true,
     "interval": 900,
     "signal": 11,
-    "on-click": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/weather-openmeteo.sh --open'",
+    "on-click": "bash -lc '$HOME/.config/waybar/scripts/weather-openmeteo.sh --open'",
     "on-click-right": "pkill -SIGRTMIN+11 waybar",
-    "exec": "bash -lc '$HOME/.config/waybar/themes/omabar-v2/weather-openmeteo.sh || printf \"%s\\\\n\" \"{\\\"text\\\":\\\"--\\\",\\\"tooltip\\\":\\\"Weather unavailable\\\"}\"'",
+    "exec": "bash -lc '$HOME/.config/waybar/scripts/weather-openmeteo.sh || printf \"%s\\\\n\" \"{\\\"text\\\":\\\"--\\\",\\\"tooltip\\\":\\\"Weather unavailable\\\"}\"'",
     "return-type": "json"
   }
 }
