@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-current_background_link="/home/oldjobobo/.config/omarchy/current/background"
+config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
+current_background_link="$config_home/omarchy/current/background"
 
 format_title() {
   local filename="$1"

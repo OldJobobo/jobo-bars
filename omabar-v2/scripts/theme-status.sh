@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-theme_name_file="/home/oldjobobo/.config/omarchy/current/theme.name"
-colors_toml="/home/oldjobobo/.config/omarchy/current/theme/colors.toml"
+config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
+theme_name_file="$config_home/omarchy/current/theme.name"
+colors_toml="$config_home/omarchy/current/theme/colors.toml"
 
 theme_name="$(<"$theme_name_file")"
 theme_title="$(sed 's/[-_]/ /g; s/.*/\L&/; s/\b\([a-z]\)/\U\1/g' <<<"$theme_name")"
