@@ -3,6 +3,7 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 location_config="${script_dir}/weather-location.conf"
+units_config="${script_dir}/units.conf"
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/omabar-v2"
 cache_file="${cache_dir}/weather-location.cache"
 
@@ -14,15 +15,36 @@ default_lat="${lat}"
 default_lon="${lon}"
 tz="$(timedatectl show -p Timezone --value 2>/dev/null || true)"
 forecast_url=""
+unit_system="imperial"
 
 if [[ -z "${tz}" ]]; then
   tz="America/Los_Angeles"
+fi
+
+if [[ -f "${units_config}" ]]; then
+  # shellcheck disable=SC1090
+  source "${units_config}"
 fi
 
 if [[ -f "${location_config}" ]]; then
   # shellcheck disable=SC1090
   source "${location_config}"
 fi
+
+case "${unit_system}" in
+  metric|celsius)
+    temperature_unit="celsius"
+    wind_speed_unit="kmh"
+    precipitation_unit="mm"
+    temp_unit_label="C"
+    ;;
+  *)
+    temperature_unit="fahrenheit"
+    wind_speed_unit="mph"
+    precipitation_unit="inch"
+    temp_unit_label="F"
+    ;;
+esac
 
 if [[ "${1:-}" == "--select" ]]; then
   exec "${script_dir}/weather-location-select.sh"
@@ -88,7 +110,7 @@ if [[ "${1:-}" == "--open" ]]; then
   exec xdg-open "${forecast_url}"
 fi
 
-url="https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timezone=${tz}&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max"
+url="https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timezone=${tz}&temperature_unit=${temperature_unit}&wind_speed_unit=${wind_speed_unit}&precipitation_unit=${precipitation_unit}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max"
 
 json="$(curl --fail --silent --show-error --max-time 4 "$url")"
 alerts_url="https://api.weather.gov/alerts/active?point=${lat},${lon}"
@@ -161,7 +183,7 @@ if [[ "${alert_count}" =~ ^[0-9]+$ ]] && (( alert_count > 0 )); then
   )
 fi
 
-tooltip_lines+=("${label} ${temp}°F")
+tooltip_lines+=("${label} ${temp}°${temp_unit_label}")
 tooltip_lines+=("Today: High ${high}°  Low ${low}°")
 tooltip_lines+=("Rain ${rain}%")
 tooltip_lines+=("Sunrise ${sunrise}  Sunset ${sunset}")
@@ -186,7 +208,7 @@ done < <(
 
 tooltip="$(printf '%s\n' "${tooltip_lines[@]}")"
 
-text="${icon} ${temp}°F"
+text="${icon} ${temp}°${temp_unit_label}"
 if [[ -n "${alert_icon}" ]]; then
   text="${alert_icon} ${text}"
 fi

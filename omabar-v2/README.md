@@ -16,7 +16,7 @@ Shows exactly what will be installed and which existing files will be backed up,
 
 ## Update
 
-Pulls the latest scripts and assets while leaving your `config.jsonc`, `style.css`, and `weather-location.conf` untouched:
+Pulls the latest scripts and assets while leaving your `config.jsonc`, `style.css`, `units.conf`, and `weather-location.conf` untouched:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh) --update
@@ -86,6 +86,16 @@ lon="-122.3321"
 tz="America/Los_Angeles"
 ```
 
+## Units
+
+CPU temperature and weather use Fahrenheit by default. To switch both to Celsius, edit `~/.config/waybar/scripts/units.conf`:
+
+```bash
+unit_system="metric"
+```
+
+Use `unit_system="imperial"` to switch back to Fahrenheit.
+
 ## Files
 
 ```
@@ -104,6 +114,7 @@ tz="America/Los_Angeles"
     ├── compact-toggle-switch.sh
     ├── temperature-status.sh
     ├── theme-status.sh
+    ├── units.conf
     ├── wallpaper-status.sh
     ├── weather-location.conf
     ├── weather-location-select.sh

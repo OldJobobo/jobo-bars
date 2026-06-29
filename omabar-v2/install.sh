@@ -4,7 +4,7 @@
 # Fresh install:
 #   bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh)
 #
-# Update (preserves config.jsonc, style.css, weather-location.conf):
+# Update (preserves config.jsonc, style.css, weather-location.conf, units.conf):
 #   bash <(curl -fsSL https://raw.githubusercontent.com/OldJobobo/jobo-bars/master/omabar-v2/install.sh) --update
 #
 # Update and also replace preserved files:
@@ -22,6 +22,7 @@ MANIFEST="$WAYBAR_DIR/.omabar-v2-manifest"
 USER_FILES=(
   config.jsonc
   style.css
+  scripts/units.conf
   scripts/weather-location.conf
 )
 
@@ -39,6 +40,7 @@ ALL_FILES=(
   scripts/compact-toggle-switch.sh
   scripts/temperature-status.sh
   scripts/theme-status.sh
+  scripts/units.conf
   scripts/wallpaper-status.sh
   scripts/weather-location.conf
   scripts/weather-location-select.sh
