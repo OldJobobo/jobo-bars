@@ -1,25 +1,13 @@
-/* Compact layout overrides. */
+/* Normal layout overrides. */
 
 window#waybar {
-  min-height: 24px;
-}
-
-* {
-  font-size: 11px;
-}
-
-.modules-left {
-  margin-left: 5px;
-}
-
-.modules-right {
-  margin-right: 5px;
+  min-height: 32px;
 }
 
 #workspaces button {
-  min-width: 9px;
-  margin: 1px 1px;
-  padding: 0 4px;
+  min-width: 11px;
+  margin: 2px 2px;
+  padding: 0 6px;
 }
 
 #tray,
@@ -42,35 +30,35 @@ window#waybar {
 #custom-compact-toggle,
 #bluetooth,
 #network {
-  margin: 0 5px;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  margin: 0 7.5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #custom-update {
-  font-size: 9px;
-  min-width: 8px;
-  margin-left: 5px;
-  margin-right: 1px;
+  font-size: 10px;
+  min-width: 10px;
+  margin-left: 8px;
+  margin-right: 2px;
 }
 
 #custom-clock-main {
-  margin-left: 6px;
-  margin-right: 3px;
+  margin-left: 8.75px;
+  margin-right: 5px;
 }
 
 #tray {
-  margin-right: 12px;
+  margin-right: 16px;
 }
 
 #custom-expand-icon {
-  margin-right: 14px;
+  margin-right: 18px;
 }
 
 #custom-omarchy {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #custom-compact-toggle {
-  font-size: 12px;
+  font-size: 13px;
 }
